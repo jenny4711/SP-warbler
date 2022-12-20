@@ -1,0 +1,32 @@
+1.How is the logged in user being kept track of?
+
+logging in and out is working by flask_bcrypt and 
+session storage. there  is authenticate function 
+which is check password with user.
+
+2.What is Flask’s g object?
+
+g now lives in the application context.
+
+Every request pushes a new application 
+context, wiping the old one, so g can still 
+be used to set flags per-request without change to code.
+The application context is popped after teardown_request 
+is called. (Armin's presentation explains this is 
+because things like creating DB connections are tasks
+ which setup the environment for the request, 
+ and should not be handled inside before_request 
+ and after_request)
+
+https://stackoverflow.com/questions/15083967/when-should-flask-g-be-used
+
+
+ 3.What is the purpose of add_user_to_g?
+
+  user is making flask global through  putting 'g'.
+
+  4.What does @app.before_request mean?
+
+  The before_request decorator allows us to 
+  execute a function before any request.
+
